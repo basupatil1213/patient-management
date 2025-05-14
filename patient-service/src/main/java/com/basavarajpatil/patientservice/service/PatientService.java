@@ -1,17 +1,15 @@
 package com.basavarajpatil.patientservice.service;
 
 
+import com.basavarajpatil.patientservice.dto.PatientRequestDTO;
 import com.basavarajpatil.patientservice.dto.PatientResponseDTO;
 import com.basavarajpatil.patientservice.mapper.PatientMapper;
 import com.basavarajpatil.patientservice.model.Patient;
 import com.basavarajpatil.patientservice.repository.PatientRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
+import java.util.List;
 
 @Service
 public class PatientService {
@@ -27,5 +25,12 @@ public class PatientService {
         return patients.stream()
                         .map(PatientMapper::toPatientResponseDTO)
                         .toList();
+    }
+
+    public PatientResponseDTO createPatient(PatientRequestDTO patientRequestDTO) {
+
+        Patient newPatient = patientRepository.save(PatientMapper.toPatientModel(patientRequestDTO));
+
+        return PatientMapper.toPatientResponseDTO(newPatient);
     }
 }
