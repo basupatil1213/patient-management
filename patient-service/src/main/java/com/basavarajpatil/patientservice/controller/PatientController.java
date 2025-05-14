@@ -1,12 +1,12 @@
 package com.basavarajpatil.patientservice.controller;
 
+import com.basavarajpatil.patientservice.dto.PatientRequestDTO;
 import com.basavarajpatil.patientservice.dto.PatientResponseDTO;
 import com.basavarajpatil.patientservice.service.PatientService;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +25,14 @@ public class PatientController {
         List<PatientResponseDTO> patients = patientService.getAllPatients();
 
         return ResponseEntity.ok().body(patients);
+    }
+
+    @PostMapping
+    public ResponseEntity<PatientResponseDTO> createPatient(@Valid @RequestBody PatientRequestDTO patientRequestDTO) {
+
+        PatientResponseDTO patientResponseDTO = patientService.createPatient(patientRequestDTO);
+
+        return ResponseEntity.ok().body(patientResponseDTO);
     }
 
 
