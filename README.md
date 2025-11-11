@@ -8,19 +8,27 @@ This repository contains a microservices-based patient management system, includ
 
 A Spring Boot REST API for managing patient records.  
 **Features:**
-- CRUD operations for patients (create, read, update, delete)
-- Data validation and exception handling
-- Uses PostgreSQL (with H2 for testing)
-- OpenAPI/Swagger documentation
+Patient Management — Microservices Overview
 
-### 2. billing-service
+Overview
+--------
+Collection of Spring Boot microservices for patient management and billing. Includes `patient-service` and `billing-service` with supporting request collections for testing.
 
-A Spring Boot service scaffolded for handling billing operations.  
-**Features:**
-- Intended for billing and invoicing logic
-- Includes dependencies for gRPC, suggesting future or planned inter-service communication via gRPC
+Services
+--------
+- patient-service: Spring Boot REST API for CRUD on patient records (Postgres/H2 for tests)
+- billing-service: Scaffolded service for billing and invoicing logic
+- api-requests: HTTP request files for endpoint testing
 
-### 3. api-requests
+Tech stack
+----------
+Java, Spring Boot, PostgreSQL (production), H2 (testing), OpenAPI/Swagger
 
-A collection of HTTP request files (in `.http` format) for testing the `patient-service` API endpoints, including:
-- Create, update, delete, and fetch patients
+Running locally
+---------------
+1. mvn install in service directories
+2. Start services with `mvn spring-boot:run`
+
+Notes
+-----
+See each service folder for detailed README and environment variable requirements.
